@@ -1,3 +1,4 @@
+import 'package:celering_user_app/features/search_view/data/models/place_model.dart';
 import 'package:here_sdk/core.dart';
 import 'package:here_sdk/mapview.dart';
 import 'package:here_sdk/routing.dart';
@@ -14,14 +15,16 @@ class HomeCubit extends Cubit<HomeState> {
   Future<void> load() async => emit(HomeState.initial());
 
   Future<void> listenMyPosition({
+    required HomeState homeState,
     required geolocator.LocationData cLoc,
     required HereMapController hereMapController,
-    required List<LocationIndicator> myLocations,
   }) async {
-    clearMapMyPosition(
-      hereMapController: hereMapController,
-      myLocations: myLocations,
-    );
+    if (homeState.myLocations.isNotEmpty) {
+      clearMapMyPosition(
+        myLocations: homeState.myLocations,
+        hereMapController: hereMapController,
+      );
+    }
     LocationIndicator locationIndicator = LocationIndicator();
     locationIndicator.locationIndicatorStyle =
         LocationIndicatorIndicatorStyle.pedestrian;
@@ -45,6 +48,21 @@ class HomeCubit extends Cubit<HomeState> {
         ),
       ),
     );
+
+    if (homeState.mapPolyLines.isNotEmpty) {
+      addRoute(
+        mapPolyLines: homeState.mapPolyLines,
+        hereMapController: hereMapController,
+        destinationGeoCoordinates: GeoCoordinates(
+          homeState.placeSelected.position.lat,
+          homeState.placeSelected.position.lng,
+        ),
+        startGeoCoordinates: GeoCoordinates(
+          cLoc.latitude!,
+          cLoc.longitude!,
+        ),
+      );
+    }
   }
 
   Future<void> clearMapPolyline({
@@ -63,11 +81,12 @@ class HomeCubit extends Cubit<HomeState> {
   }) async {
     for (var locationIndicator in myLocations) {
       hereMapController.removeLifecycleListener(locationIndicator);
+      emit(state.copyWith(myLocations: []));
     }
-    emit(state.copyWith(mapPolyLines: []));
   }
 
   Future<void> addRoute({
+    required List<MapPolyline> mapPolyLines,
     required GeoCoordinates startGeoCoordinates,
     required HereMapController hereMapController,
     required GeoCoordinates destinationGeoCoordinates,
@@ -77,16 +96,25 @@ class HomeCubit extends Cubit<HomeState> {
 
     List<Waypoint> waypoints = [startWaypoint, destinationWaypoint];
 
-    state.routingEngine.calculateCarRoute(waypoints, CarOptions.withDefaults(),
-        (
-      RoutingError? routingError,
-      List<here.Route>? routeList,
-    ) {
-      if (routingError == null) {
-        here.Route route = routeList!.first;
-        _showRouteOnMap(route, hereMapController);
-      }
-    });
+    state.routingEngine.calculateCarRoute(
+      waypoints,
+      CarOptions.withDefaults(),
+      (
+        RoutingError? routingError,
+        List<here.Route>? routeList,
+      ) {
+        if (routingError == null) {
+          here.Route route = routeList!.first;
+          _showRouteOnMap(route, hereMapController);
+        }
+      },
+    );
+    if (mapPolyLines.isNotEmpty) {
+      clearMapPolyline(
+        mapPolyLines: mapPolyLines,
+        hereMapController: hereMapController,
+      );
+    }
   }
 
   _showRouteOnMap(
@@ -101,9 +129,10 @@ class HomeCubit extends Cubit<HomeState> {
       const Color.fromARGB(160, 0, 144, 138),
     );
     hereMapController.mapScene.addMapPolyline(routeMapPolyline);
+    emit(state.copyWith(mapPolyLines: [routeMapPolyline]));
+  }
 
-    emit(state.copyWith(
-      mapPolyLines: state.mapPolyLines + [routeMapPolyline],
-    ));
+  setPlaceSelect(PlaceModel placeSelected) {
+    emit(state.copyWith(placeSelected: placeSelected));
   }
 }

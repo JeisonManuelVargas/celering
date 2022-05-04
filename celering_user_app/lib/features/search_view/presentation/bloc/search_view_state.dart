@@ -15,8 +15,8 @@ class SearchViewState {
 
   factory SearchViewState.initial() => SearchViewState(
         places: [],
-        loading: false,
         message: "",
+        loading: false,
         isSuccess: true,
       );
 

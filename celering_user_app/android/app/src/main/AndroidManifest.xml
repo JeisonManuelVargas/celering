@@ -6,8 +6,8 @@
         android:icon="@mipmap/ic_launcher">
 
        <!-- Set your HERE SDK for Flutter credentials below. -->
-       <meta-data android:name="com.here.sdk.access_key_id" android:value="CkrAPxL-svd4BiFqvCwNWA"/>
-       <meta-data android:name="com.here.sdk.access_key_secret" android:value="VbFzgK7FlKP-uEHpBiueV_cAytGQigrfqFfXECbmoFYZS7TSoBkKqEEgLHuMKVZXQZB5FviNjGd8OvKEHDZYBg"/>
+       <meta-data android:name="com.here.sdk.access_key_id" android:value="Y9h-Aj9nzyQnyeca6A2M5Q"/>
+       <meta-data android:name="com.here.sdk.access_key_secret" android:value="b_5YYA0q_VieU412SoAv80SBwnAfC_0hFGLMtVOuqy6MzdhyoxgMMaV7NBYGhg-1jRj_VbM0sqm-Zsni_pogFQ"/>
 
         <activity
             android:name=".MainActivity"

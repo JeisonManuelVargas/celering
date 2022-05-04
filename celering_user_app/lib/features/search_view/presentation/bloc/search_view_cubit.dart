@@ -19,9 +19,9 @@ class SearchViewCubit extends Cubit<SearchViewState> {
       (dynamic failure) {
         emit(
           state.copyWith(
-            isSuccess: false,
-            places: failure.message,
             loading: false,
+            isSuccess: false,
+            message: failure.message,
           ),
         );
       },
