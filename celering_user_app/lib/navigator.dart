@@ -4,19 +4,23 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:celering_user_app/core/animations/fade_page_route.dart';
 import 'package:celering_user_app/features/home/presentation/pages/home.dart';
+import 'package:celering_user_app/features/login/presentation/pages/login.dart';
 
 enum Routes {
   INIT,
   HOME,
+  LOGIN,
 }
 
 class _Page {
-  static const String init = "/init";
+  static const String init = "/";
   static const String home = "/home";
+  static const String login = "/login";
 
   static const Map<Routes, String> _pageMap = {
     Routes.INIT: init,
     Routes.HOME: home,
+    Routes.LOGIN: login,
   };
 
   static String? page(Routes routes) => _pageMap[routes];
@@ -31,7 +35,9 @@ class AppNavigator {
 
     switch (settings.name) {
       case _Page.init:
-        return _pageRoute(Home());
+        return _pageRoute(Login());
+      case _Page.login:
+        return _pageRoute(Login());
       case _Page.home:
         return _pageRoute(Home());
       default:

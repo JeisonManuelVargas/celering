@@ -1,4 +1,3 @@
-import 'package:celering_user_app/features/search_view/data/models/place_model.dart';
 import 'package:here_sdk/core.dart';
 import 'package:here_sdk/mapview.dart';
 import 'package:here_sdk/routing.dart';
@@ -8,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:location/location.dart' as geolocator;
 import 'package:celering_user_app/core/model/lat_lng_model.dart';
 import 'package:celering_user_app/features/home/presentation/bloc/home_state.dart';
+import 'package:celering_user_app/features/search_view/data/models/place_model.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeState.initial());

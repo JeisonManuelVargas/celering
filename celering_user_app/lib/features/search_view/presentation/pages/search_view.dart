@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:celering_user_app/core/util/debouncer.dart';
 import 'package:celering_user_app/injection_container.dart';
 import 'package:celering_user_app/core/util/screen_size.dart';
-import 'package:celering_user_app/core/widget/input_celering.dart';
+import 'package:celering_user_app/core/widget/input_celering_search.dart';
 import 'package:celering_user_app/core/helpers/base_screen_stateless.dart';
 import 'package:celering_user_app/features/search_view/data/models/place_model.dart';
 import 'package:celering_user_app/features/search_view/presentation/bloc/search_view_cubit.dart';
@@ -35,7 +35,7 @@ class SearchView extends BaseScreen<SearchViewState, SearchViewCubit> {
             right: ScreenSize.width(context) * 0.03,
             bottom: ScreenSize.height(context) * 0.01,
           ),
-          child: InputCelering(
+          child: InputCeleringSearch(
             label: "Search",
             onChanged: (String text) => _debouncer.run(
               () => bloc.searchPlace(place: text),
@@ -55,7 +55,9 @@ class SearchView extends BaseScreen<SearchViewState, SearchViewCubit> {
                     itemBuilder: (BuildContext context, int index) =>
                         ContainerItemPlace(
                       place: state.places[index],
-                      handledTap: () => onTapPlace(state.places[index]),
+                      handledTap: () => onTapPlace(
+                        state.places[index],
+                      ),
                     ),
                   ),
           ),

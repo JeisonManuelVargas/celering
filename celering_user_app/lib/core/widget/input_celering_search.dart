@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-class InputCelering extends StatelessWidget {
+class InputCeleringSearch extends StatelessWidget {
   final String label;
-  final Function(dynamic)? validator;
-  final TextEditingController controller;
+  final Function(String) onChanged;
 
   static OutlineInputBorder borderSide = OutlineInputBorder(
     borderRadius: BorderRadius.circular(10),
@@ -20,18 +19,13 @@ class InputCelering extends StatelessWidget {
     ),
   );
 
-  const InputCelering({
-    Key? key,
-    this.validator,
-    required this.label,
-    required this.controller,
-  }) : super(key: key);
+  const InputCeleringSearch({Key? key, required this.onChanged, required this.label})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      validator: (e) => validator != null ? validator!(e) : null,
+    return TextField(
+      onChanged: onChanged,
       decoration: InputDecoration(
         filled: true,
         counterText: "",
