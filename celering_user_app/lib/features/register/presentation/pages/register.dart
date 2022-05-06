@@ -49,6 +49,7 @@ class Register extends BaseScreen<RegisterState, RegisterCubit> {
               ),
               ButtonCelering(
                 label: "Register",
+                isLoading: state.isLoading,
                 onTap: () => bloc.signUp(
                   context: context,
                   loginState: state,

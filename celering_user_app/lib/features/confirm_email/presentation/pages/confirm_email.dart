@@ -51,6 +51,7 @@ class ConfirmEmail extends BaseScreen<ConfirmEmailState, ConfirmEmailCubit> {
             ),
             ButtonCelering(
               label: "ConfirmEmail",
+              isLoading: state.isLoading,
               onTap: () => bloc.confirmSignUp(
                 context: context,
                 email: email,

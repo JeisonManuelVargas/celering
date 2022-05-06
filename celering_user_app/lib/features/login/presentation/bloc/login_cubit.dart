@@ -15,6 +15,7 @@ class LoginCubit extends Cubit<LoginState> {
     required LoginState loginState,
     required BuildContext context,
   }) async {
+    emit(state.copyWith(isLoading: true));
     try {
       await Amplify.Auth.signOut();
     } on AuthException catch (e) {
@@ -31,5 +32,6 @@ class LoginCubit extends Cubit<LoginState> {
     } on AuthException catch (e) {
       snackBarMessageCelering(context, message: e.message);
     }
+    emit(state.copyWith(isLoading: false));
   }
 }

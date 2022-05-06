@@ -21,9 +21,7 @@ class SearchViewDataSourceImpl implements SearchViewDataSource {
   @override
   Future<List<PlaceModel>> searchPlace({required String place}) async {
     try {
-      ServerResponse serverResponse = await centerApi.get(
-        urlSpecific: Server.placeEndpoint(place),
-      );
+      ServerResponse serverResponse = await centerApi.get(urlSpecific: Server.placeEndpoint(place));
       if (serverResponse.isSuccess) {
         final List listPlaceMap = serverResponse.result["items"];
         final List<PlaceModel> listPlaceModel = listPlaceMap.map((e) => PlaceModel.fromJson(e)).toList();

@@ -15,6 +15,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     required RegisterState loginState,
     required BuildContext context,
   }) async {
+    emit(state.copyWith(isLoading: true));
     try {
       Map<CognitoUserAttributeKey, String> userAttributes = {
         CognitoUserAttributeKey.email: loginState.emailController.text,
@@ -33,5 +34,6 @@ class RegisterCubit extends Cubit<RegisterState> {
     } on AuthException catch (e) {
       snackBarMessageCelering(context, message: e.message);
     }
+    emit(state.copyWith(isLoading: false));
   }
 }

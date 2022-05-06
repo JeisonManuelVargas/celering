@@ -1,29 +1,29 @@
 import 'package:flutter/cupertino.dart';
 
 class LoginState {
-  final bool isLogin;
+  final bool isLoading;
   final TextEditingController emailController;
   final TextEditingController passwordController;
 
   LoginState({
-    required this.isLogin,
+    required this.isLoading,
     required this.emailController,
     required this.passwordController,
   });
 
   factory LoginState.initial() => LoginState(
-        isLogin: false,
+        isLoading: false,
         emailController: TextEditingController(),
         passwordController: TextEditingController(),
       );
 
   LoginState copyWith({
-    bool? isLogin,
+    bool? isLoading,
     TextEditingController? emailController,
     TextEditingController? passwordController,
   }) {
     return LoginState(
-        isLogin: isLogin ?? this.isLogin,
+        isLoading: isLoading ?? this.isLoading,
         emailController: emailController ?? this.emailController,
         passwordController: passwordController ?? this.emailController);
   }

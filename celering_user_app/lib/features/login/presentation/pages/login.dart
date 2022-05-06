@@ -50,6 +50,7 @@ class Login extends BaseScreen<LoginState, LoginCubit> {
               ),
               ButtonCelering(
                 label: "Login",
+                isLoading: state.isLoading,
                 onTap: () => bloc.signIn(
                   context: context,
                   loginState: state,

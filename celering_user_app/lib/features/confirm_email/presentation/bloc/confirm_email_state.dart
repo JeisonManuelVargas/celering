@@ -1,25 +1,25 @@
 import 'package:flutter/cupertino.dart';
 
 class ConfirmEmailState {
-  final bool isConfirmEmail;
+  final bool isLoading;
   final TextEditingController confirmationCodeController;
 
   ConfirmEmailState({
-    required this.isConfirmEmail,
+    required this.isLoading,
     required this.confirmationCodeController,
   });
 
   factory ConfirmEmailState.initial() => ConfirmEmailState(
-        isConfirmEmail: false,
+        isLoading: false,
         confirmationCodeController: TextEditingController(),
       );
 
   ConfirmEmailState copyWith({
-    bool? isConfirmEmail,
+    bool? isLoading,
     TextEditingController? confirmationCodeController,
   }) {
     return ConfirmEmailState(
-        isConfirmEmail: isConfirmEmail ?? this.isConfirmEmail,
+        isLoading: isLoading ?? this.isLoading,
         confirmationCodeController: confirmationCodeController ?? this.confirmationCodeController,
         );
   }

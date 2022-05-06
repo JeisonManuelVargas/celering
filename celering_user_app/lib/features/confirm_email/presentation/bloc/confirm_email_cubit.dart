@@ -16,6 +16,7 @@ class ConfirmEmailCubit extends Cubit<ConfirmEmailState> {
     required BuildContext context,
     required String email,
   }) async {
+    emit(state.copyWith(isLoading: true));
     try {
       Amplify.Auth.confirmSignUp(
         confirmationCode: confirmEmailState.confirmationCodeController.text,
@@ -25,5 +26,6 @@ class ConfirmEmailCubit extends Cubit<ConfirmEmailState> {
     } on AuthException catch (e) {
       snackBarMessageCelering(context, message: e.message);
     }
+    emit(state.copyWith(isLoading: false));
   }
 }
