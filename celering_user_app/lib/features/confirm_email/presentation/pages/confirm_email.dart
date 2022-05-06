@@ -1,6 +1,4 @@
 import 'package:celering_user_app/core/widget/title_celering.dart';
-import 'package:celering_user_app/features/register/presentation/bloc/register_cubit.dart';
-import 'package:celering_user_app/features/register/presentation/bloc/register_state.dart';
 import 'package:flutter/material.dart';
 import 'package:celering_user_app/injection_container.dart';
 import 'package:celering_user_app/core/util/screen_size.dart';
@@ -8,19 +6,21 @@ import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:celering_user_app/core/widget/input_celering.dart';
 import 'package:celering_user_app/core/widget/button_celering.dart';
 import 'package:celering_user_app/core/helpers/base_screen_stateless.dart';
+import 'package:celering_user_app/features/confirm_email/presentation/bloc/confirm_email_cubit.dart';
+import 'package:celering_user_app/features/confirm_email/presentation/bloc/confirm_email_state.dart';
 
-class Register extends BaseScreen<RegisterState, RegisterCubit> {
+class ConfirmEmail extends BaseScreen<ConfirmEmailState, ConfirmEmailCubit> {
   final AmplifyAuthCognito auth = AmplifyAuthCognito();
+  final String email;
 
-  Register({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  RegisterCubit createBloc() => sl<RegisterCubit>()..load();
+  ConfirmEmail({Key? key, required this.email}) : super(key: key);
 
   @override
-  Widget buildScreen(BuildContext context, RegisterCubit bloc, RegisterState state) {
+  ConfirmEmailCubit createBloc() => sl<ConfirmEmailCubit>()..load();
+
+  @override
+  Widget buildScreen(
+      BuildContext context, ConfirmEmailCubit bloc, ConfirmEmailState state) {
     return Scaffold(
       body: Container(
         width: ScreenSize.width(context),
@@ -31,26 +31,30 @@ class Register extends BaseScreen<RegisterState, RegisterCubit> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const TitleCelering(title: "Register"),
+            const TitleCelering(title: "Confirm Email"),
             InputCelering(
-              label: "Email",
-              controller: state.emailController,
+              label: "Codigo deverificacion",
+              controller: state.confirmationCodeController,
             ),
             SizedBox(
               height: ScreenSize.height(context) * 0.05,
             ),
-            InputCelering(
-              label: "Password",
-              controller: state.passwordController,
+            Text(
+              "enter the verification code that you receive in the mail",
+              style: TextStyle(
+                  fontWeight: FontWeight.w300,
+                  color: Colors.grey.shade500,
+                  fontSize: 12),
             ),
             SizedBox(
               height: ScreenSize.height(context) * 0.05,
             ),
             ButtonCelering(
-              label: "Register",
-              onTap: () => bloc.signUp(
+              label: "ConfirmEmail",
+              onTap: () => bloc.confirmSignUp(
                 context: context,
-                loginState: state,
+                email: email,
+                confirmEmailState: state,
               ),
             )
           ],

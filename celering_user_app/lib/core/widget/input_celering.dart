@@ -7,15 +7,15 @@ class InputCelering extends StatelessWidget {
 
   static OutlineInputBorder borderSide = OutlineInputBorder(
     borderRadius: BorderRadius.circular(10),
-    borderSide: const BorderSide(
-      color: Colors.white10,
+    borderSide: BorderSide(
+      color: Colors.blue.shade200,
       width: 0.5,
     ),
   );
   static OutlineInputBorder enabledBorder = OutlineInputBorder(
     borderRadius: BorderRadius.circular(10),
     borderSide: const BorderSide(
-      color: Colors.red,
+      color: Colors.grey,
       width: 0.5,
     ),
   );
@@ -37,7 +37,7 @@ class InputCelering extends StatelessWidget {
         counterText: "",
         hintText: label,
         border: borderSide,
-        fillColor: Colors.orange,
+        fillColor: Colors.grey.shade200,
         focusedBorder: borderSide,
         enabledBorder: enabledBorder,
         disabledBorder: enabledBorder,

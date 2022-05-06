@@ -1,3 +1,4 @@
+import 'package:celering_user_app/navigator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
@@ -26,7 +27,7 @@ class LoginCubit extends Cubit<LoginState> {
         password: loginState.passwordController.text.trim(),
       );
       print(data);
-      print("se realizo con exito el login");
+      AppNavigator.pushNamedAndRemoveUntil(Routes.HOME);
     } on AuthException catch (e) {
       snackBarMessageCelering(context, message: e.message);
     }

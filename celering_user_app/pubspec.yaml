@@ -40,7 +40,8 @@ dependencies:
   sliding_up_panel: ^2.0.0+1
   shared_preferences: ^2.0.13
   easy_localization_loader: ^1.0.0
-  amplify_flutter: 0.4.5
+  amplify_flutter: ^0.4.0
+  amplify_datastore: ^0.4.0
   amplify_storage_s3: 0.4.5
   amplify_auth_cognito: ^0.4.5
   amplify_analytics_pinpoint: 0.4.5

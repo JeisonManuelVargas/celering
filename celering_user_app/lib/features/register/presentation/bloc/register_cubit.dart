@@ -1,3 +1,4 @@
+import 'package:celering_user_app/navigator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
@@ -10,23 +11,25 @@ class RegisterCubit extends Cubit<RegisterState> {
 
   Future<void> load() async => emit(RegisterState.initial());
 
-  Future<void> signIn({
+  Future<void> signUp({
     required RegisterState loginState,
     required BuildContext context,
   }) async {
     try {
-      await Amplify.Auth.signOut();
-    } on AuthException catch (e) {
-      snackBarMessageCelering(context, message: e.message);
-    }
+      Map<CognitoUserAttributeKey, String> userAttributes = {
+        CognitoUserAttributeKey.email: loginState.emailController.text,
+      };
 
-    try {
-      SignInResult data = await Amplify.Auth.signIn(
-        username: loginState.emailController.text.trim(),
-        password: loginState.passwordController.text.trim(),
+      await Amplify.Auth.signUp(
+        password: loginState.passwordController.text,
+        username: loginState.emailController.text,
+        options: CognitoSignUpOptions(userAttributes: userAttributes),
       );
-      print(data);
-      print("se realizo con exito el login");
+
+      AppNavigator.push(
+        Routes.CONFIRMATION_EMAIL,
+        loginState.emailController.text,
+      );
     } on AuthException catch (e) {
       snackBarMessageCelering(context, message: e.message);
     }

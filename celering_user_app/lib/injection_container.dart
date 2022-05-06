@@ -1,5 +1,10 @@
+import 'package:celering_user_app/features/confirm_email/presentation/bloc/confirm_email_cubit.dart';
+import 'package:celering_user_app/features/register/presentation/bloc/register_cubit.dart';
 import 'package:get_it/get_it.dart';
+import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:celering_user_app/amplifyconfiguration.dart';
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:celering_user_app/features/home/presentation/bloc/home_cubit.dart';
 import 'package:celering_user_app/features/login/presentation/bloc/login_cubit.dart';
 import 'package:celering_user_app/features/search_view/presentation/bloc/search_view_cubit.dart';
@@ -14,22 +19,37 @@ init() async {
   //Blocs
   sl.registerFactory(() => HomeCubit());
   sl.registerFactory(() => LoginCubit());
+  sl.registerFactory(() => RegisterCubit());
+  sl.registerFactory(() => ConfirmEmailCubit());
   sl.registerFactory(() => SearchViewCubit(searchViewUserCase: sl()));
 
 // Use cases
-  sl.registerLazySingleton(() => SearchViewUserCase(searchViewRepository: sl()));
-
+  sl.registerLazySingleton(
+      () => SearchViewUserCase(searchViewRepository: sl()));
 
 //Repositories
-  sl.registerLazySingleton<SearchViewRepository>(() => SearchViewRepositoryImpl(searchViewDataSource: sl()));
+  sl.registerLazySingleton<SearchViewRepository>(
+      () => SearchViewRepositoryImpl(searchViewDataSource: sl()));
 
   //DataSource
-  sl.registerLazySingleton<SearchViewDataSource>(() => SearchViewDataSourceImpl(
-      sharedPreferences: sl()
-  ));
-
+  sl.registerLazySingleton<SearchViewDataSource>(
+      () => SearchViewDataSourceImpl(sharedPreferences: sl()));
 
   //SharedPreference
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   sl.registerLazySingleton<SharedPreferences>(() => sharedPreferences);
+
+  // initial amplify
+
+  final _amplifyInstance = Amplify;
+
+  AmplifyAuthCognito _amplifyAuthCognito = AmplifyAuthCognito();
+  _amplifyInstance.addPlugin(_amplifyAuthCognito);
+
+  // Initialize AmplifyFlutter
+  try {
+    await _amplifyInstance.configure(amplifyconfig);
+  } on AmplifyAlreadyConfiguredException catch (e) {
+    print(e);
+  }
 }

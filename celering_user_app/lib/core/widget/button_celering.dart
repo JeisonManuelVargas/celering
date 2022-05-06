@@ -14,7 +14,8 @@ class ButtonCelering extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.red,
+      elevation: 5,
+      color: Colors.blue.shade200,
       borderRadius: BorderRadius.circular(
         ScreenSize.height(context) * 0.03,
       ),
@@ -25,7 +26,10 @@ class ButtonCelering extends StatelessWidget {
             vertical: ScreenSize.height(context) * 0.03,
           ),
           alignment: Alignment.center,
-          child: Text(label),
+          child: Text(
+            label,
+            style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 18),
+          ),
         ),
       ),
     );

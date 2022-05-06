@@ -1,3 +1,5 @@
+import 'package:celering_user_app/core/widget/title_celering.dart';
+import 'package:celering_user_app/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:celering_user_app/injection_container.dart';
 import 'package:celering_user_app/core/util/screen_size.dart';
@@ -30,6 +32,7 @@ class Login extends BaseScreen<LoginState, LoginCubit> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const TitleCelering(title: "Login"),
             InputCelering(
               label: "Email",
               controller: state.emailController,
@@ -39,7 +42,7 @@ class Login extends BaseScreen<LoginState, LoginCubit> {
             ),
             InputCelering(
               label: "Password",
-              controller: state.emailController,
+              controller: state.passwordController,
             ),
             SizedBox(
               height: ScreenSize.height(context) * 0.05,
@@ -50,6 +53,13 @@ class Login extends BaseScreen<LoginState, LoginCubit> {
                 context: context,
                 loginState: state,
               ),
+            ),
+            SizedBox(
+              height: ScreenSize.height(context) * 0.05,
+            ),
+            InkWell(
+              onTap: () => AppNavigator.push(Routes.REGISTER),
+              child: const Text("Registrarse"),
             )
           ],
         ),

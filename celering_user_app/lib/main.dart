@@ -8,7 +8,6 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SdkContext.init(IsolateOrigin.main);
   await di.init();
-
   runApp(
     const MyApp(),
   );
