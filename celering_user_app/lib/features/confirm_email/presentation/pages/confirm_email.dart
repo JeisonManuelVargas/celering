@@ -33,7 +33,7 @@ class ConfirmEmail extends BaseScreen<ConfirmEmailState, ConfirmEmailCubit> {
           children: [
             const TitleCelering(title: "Confirm Email"),
             InputCelering(
-              label: "Codigo deverificacion",
+              label: "Codigo de verificacion",
               controller: state.confirmationCodeController,
             ),
             SizedBox(

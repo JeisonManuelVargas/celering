@@ -22,38 +22,40 @@ class Register extends BaseScreen<RegisterState, RegisterCubit> {
   @override
   Widget buildScreen(BuildContext context, RegisterCubit bloc, RegisterState state) {
     return Scaffold(
-      body: Container(
-        width: ScreenSize.width(context),
-        height: ScreenSize.height(context),
-        margin: EdgeInsets.symmetric(
-          horizontal: ScreenSize.width(context) * 0.05,
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const TitleCelering(title: "Register"),
-            InputCelering(
-              label: "Email",
-              controller: state.emailController,
-            ),
-            SizedBox(
-              height: ScreenSize.height(context) * 0.05,
-            ),
-            InputCelering(
-              label: "Password",
-              controller: state.passwordController,
-            ),
-            SizedBox(
-              height: ScreenSize.height(context) * 0.05,
-            ),
-            ButtonCelering(
-              label: "Register",
-              onTap: () => bloc.signUp(
-                context: context,
-                loginState: state,
+      body: SingleChildScrollView(
+        child: Container(
+          width: ScreenSize.width(context),
+          height: ScreenSize.height(context),
+          margin: EdgeInsets.symmetric(
+            horizontal: ScreenSize.width(context) * 0.05,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const TitleCelering(title: "Register"),
+              InputCelering(
+                label: "Email",
+                controller: state.emailController,
               ),
-            )
-          ],
+              SizedBox(
+                height: ScreenSize.height(context) * 0.05,
+              ),
+              InputCelering(
+                label: "Password",
+                controller: state.passwordController,
+              ),
+              SizedBox(
+                height: ScreenSize.height(context) * 0.05,
+              ),
+              ButtonCelering(
+                label: "Register",
+                onTap: () => bloc.signUp(
+                  context: context,
+                  loginState: state,
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
