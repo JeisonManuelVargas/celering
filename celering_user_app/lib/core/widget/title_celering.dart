@@ -1,3 +1,4 @@
+import 'package:celering_user_app/core/util/screen_size.dart';
 import 'package:flutter/cupertino.dart';
 
 class TitleCelering extends StatelessWidget {
@@ -8,7 +9,7 @@ class TitleCelering extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 30),
+      margin: EdgeInsets.only(bottom: ScreenSize.height(context) * 0.05),
       child: Text(
         title,
         style: const TextStyle(

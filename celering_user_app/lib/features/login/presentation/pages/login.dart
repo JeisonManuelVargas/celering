@@ -23,45 +23,47 @@ class Login extends BaseScreen<LoginState, LoginCubit> {
   @override
   Widget buildScreen(BuildContext context, LoginCubit bloc, LoginState state) {
     return Scaffold(
-      body: Container(
-        width: ScreenSize.width(context),
-        height: ScreenSize.height(context),
-        margin: EdgeInsets.symmetric(
-          horizontal: ScreenSize.width(context) * 0.05,
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const TitleCelering(title: "Login"),
-            InputCelering(
-              label: "Email",
-              controller: state.emailController,
-            ),
-            SizedBox(
-              height: ScreenSize.height(context) * 0.05,
-            ),
-            InputCelering(
-              label: "Password",
-              controller: state.passwordController,
-            ),
-            SizedBox(
-              height: ScreenSize.height(context) * 0.05,
-            ),
-            ButtonCelering(
-              label: "Login",
-              onTap: () => bloc.signIn(
-                context: context,
-                loginState: state,
+      body: SingleChildScrollView(
+        child: Container(
+          width: ScreenSize.width(context),
+          height: ScreenSize.height(context),
+          margin: EdgeInsets.symmetric(
+            horizontal: ScreenSize.width(context) * 0.05,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const TitleCelering(title: "Login"),
+              InputCelering(
+                label: "Email",
+                controller: state.emailController,
               ),
-            ),
-            SizedBox(
-              height: ScreenSize.height(context) * 0.05,
-            ),
-            InkWell(
-              onTap: () => AppNavigator.push(Routes.REGISTER),
-              child: const Text("Registrarse"),
-            )
-          ],
+              SizedBox(
+                height: ScreenSize.height(context) * 0.05,
+              ),
+              InputCelering(
+                label: "Password",
+                controller: state.passwordController,
+              ),
+              SizedBox(
+                height: ScreenSize.height(context) * 0.05,
+              ),
+              ButtonCelering(
+                label: "Login",
+                onTap: () => bloc.signIn(
+                  context: context,
+                  loginState: state,
+                ),
+              ),
+              SizedBox(
+                height: ScreenSize.height(context) * 0.05,
+              ),
+              InkWell(
+                onTap: () => AppNavigator.push(Routes.REGISTER),
+                child: const Text("Registrarse"),
+              )
+            ],
+          ),
         ),
       ),
     );
