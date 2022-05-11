@@ -33,6 +33,7 @@ pubspec.lock
 .pub/
 build/
 plugins/
+amplify/
 
 # Web related
 lib/generated_plugin_registrant.dart
