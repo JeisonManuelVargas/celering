@@ -9,7 +9,6 @@
 .history
 .svn/
 ./plugins
-*.metadata
 pubspec.lock
 
 # IntelliJ related
@@ -26,6 +25,7 @@ pubspec.lock
 # Flutter/Dart/Pub related
 **/doc/api/
 .dart_tool/
+.metadata
 .flutter-plugins
 .flutter-plugins-dependencies
 .packages
@@ -49,7 +49,6 @@ amplify/logs
 amplify/mock-data
 amplify/backend/amplify-meta.json
 amplify/backend/.temp
-build/
 dist/
 node_modules/
 aws-exports.js
