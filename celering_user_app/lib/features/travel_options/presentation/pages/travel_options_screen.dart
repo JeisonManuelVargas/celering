@@ -1,22 +1,23 @@
 import 'package:celering_user_app/core/helpers/base_screen_stateless.dart';
-import 'package:celering_user_app/features/travel/presentation/cubit/travel_cubit.dart';
-import 'package:celering_user_app/features/travel/presentation/cubit/travel_state.dart';
+import 'package:celering_user_app/features/travel_options/presentation/cubit/travel_options_cubit.dart';
+import 'package:celering_user_app/features/travel_options/presentation/cubit/travel_options__state.dart';
 import 'package:celering_user_app/injection_container.dart';
 import 'package:flutter/material.dart';
 import 'package:here_sdk/core.dart';
 import 'package:here_sdk/mapview.dart';
 
-class Travel extends BaseScreen<TravelState, TravelCubit> {
-  const Travel({
+class TravelOptionsScreen
+    extends BaseScreen<TravelOptionsState, TravelOptionsCubit> {
+  const TravelOptionsScreen({
     Key? key,
   }) : super(key: key);
 
   @override
-  TravelCubit createBloc() => sl<TravelCubit>()..load();
+  TravelOptionsCubit createBloc() => sl<TravelOptionsCubit>()..load();
 
   @override
   Widget buildScreen(
-      BuildContext context, TravelCubit bloc, TravelState state) {
+      BuildContext context, TravelOptionsCubit bloc, TravelOptionsState state) {
     return Scaffold(
       body: Stack(
         children: [
@@ -33,7 +34,7 @@ class Travel extends BaseScreen<TravelState, TravelCubit> {
               top: 0,
               left: 0,
               child: ElevatedButton(
-                onPressed: () => bloc.requestPickUpNodes(),
+                onPressed: () => bloc.requestTravelOptions(),
                 child: const Icon(Icons.search),
               ))
         ],

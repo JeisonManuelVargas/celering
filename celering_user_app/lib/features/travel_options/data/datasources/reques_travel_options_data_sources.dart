@@ -1,21 +1,22 @@
 import 'package:celering_user_app/core/errors/travel_exception.dart';
 import 'package:celering_user_app/core/model/server_response.dart';
 import 'package:celering_user_app/core/services/center_api.dart';
-import 'package:celering_user_app/features/travel/data/models/pickup_node.dart';
+import 'package:celering_user_app/features/travel_options/data/models/pickup_node.dart';
 
-abstract class TravelDataSource {
-  Future<List<PickUpNode>> requestPickUpNodes();
+abstract class RequestTravelOptionsDataSource {
+  Future<List<PickUpNode>> requestTravelOptions();
 }
 
-class TravelDataSourceImpl implements TravelDataSource {
+class RequestTravelOptionsDataSourceImpl
+    implements RequestTravelOptionsDataSource {
   static late CenterApi centerApi;
 
-  TravelDataSourceImpl() {
+  requestTravelOptionsImpl() {
     centerApi = CenterApi();
   }
 
   @override
-  Future<List<PickUpNode>> requestPickUpNodes() async {
+  Future<List<PickUpNode>> requestTravelOptions() async {
     try {
       Map<String, dynamic> requestData = {
         "passenger_id": "3c07cc82-c349-4c86-a975-4a352151422a",
