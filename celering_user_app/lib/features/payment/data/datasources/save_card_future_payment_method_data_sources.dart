@@ -5,13 +5,9 @@ abstract class SaveCardFuturePaymentMethodDataSource {
   Future<dynamic> saveCardFuturePaymentMethod();
 }
 
-class SaveCardFuturePaymentMethodDataSourceImpl
+class SaveCardFuturePaymentMethodDataSourceImpl extends CenterApi
     implements SaveCardFuturePaymentMethodDataSource {
-  static late CenterApi centerApi;
-
-  SaveCardFuturePaymentMethodDataSourceImpl() {
-    centerApi = CenterApi();
-  }
+  SaveCardFuturePaymentMethodDataSourceImpl();
 
   @override
   Future<dynamic> saveCardFuturePaymentMethod() async {
