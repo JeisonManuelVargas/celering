@@ -9,3 +9,9 @@ class SaveCardFuturePaymentException implements Exception {
 
   SaveCardFuturePaymentException({required this.message});
 }
+
+class InitializeStripeException implements Exception {
+  final String message;
+
+  InitializeStripeException({required this.message});
+}

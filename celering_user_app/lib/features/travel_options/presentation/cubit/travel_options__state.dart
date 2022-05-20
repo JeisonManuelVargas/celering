@@ -1,32 +1,26 @@
-import 'package:celering_user_app/core/model/lat_lng_model.dart';
-import 'package:here_sdk/mapview.dart';
+import 'package:celering_user_app/features/travel_options/data/models/travel_option_model.dart';
 
 class TravelOptionsState {
-  LatLngModel myLatLng;
-  List<LocationIndicator> myLocations;
-  List<MapPolyline> mapPolylines;
+  bool isLoading;
+  List<TravelOptionModel> travelOptions;
 
   TravelOptionsState({
-    required this.myLatLng,
-    required this.myLocations,
-    required this.mapPolylines,
+    required this.isLoading,
+    required this.travelOptions,
   });
 
   factory TravelOptionsState.initial() => TravelOptionsState(
-        myLatLng: LatLngModel.fromJsonNoData(),
-        myLocations: [],
-        mapPolylines: [],
+        isLoading: false,
+        travelOptions: [],
       );
 
   TravelOptionsState copyWith({
-    LatLngModel? myLatLng,
-    List<LocationIndicator>? myLocations,
-    List<MapPolyline>? mapPolylines,
+    bool? isLoading,
+    List<TravelOptionModel>? travelOptions,
   }) {
     return TravelOptionsState(
-      myLatLng: myLatLng ?? this.myLatLng,
-      myLocations: myLocations ?? this.myLocations,
-      mapPolylines: mapPolylines ?? this.mapPolylines,
+      isLoading: isLoading ?? this.isLoading,
+      travelOptions: travelOptions ?? this.travelOptions,
     );
   }
 }

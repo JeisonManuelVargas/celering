@@ -54,6 +54,7 @@ class CenterApi {
   Future<ServerResponse> post({
     required Map<String, dynamic> data,
     required String urlSpecific,
+    // Map<String, String> headers = _headers,
   }) async {
     try {
       String dataParse = data.isNotEmpty ? json.encode(data) : "";

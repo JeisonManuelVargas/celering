@@ -22,3 +22,9 @@ class SaveCardFuturePaymentFailure extends Failure {
 
   SaveCardFuturePaymentFailure({required this.message});
 }
+
+class InitializeStripeFailure extends Failure {
+  final String message;
+
+  InitializeStripeFailure({required this.message});
+}

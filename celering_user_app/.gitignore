@@ -27,9 +27,12 @@
 .flutter-plugins
 .flutter-plugins-dependencies
 .packages
+pubspec.lock
 .pub-cache/
 .pub/
 build/
+
+# Packages related
 plugins/
 amplify/
 
