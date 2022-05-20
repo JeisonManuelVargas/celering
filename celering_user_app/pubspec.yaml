@@ -57,6 +57,9 @@ dependencies:
   here_sdk:
     path: plugins/here_sdk
 
+  flutterlab_stripe:
+    path: plugins/flutterlab_stripe
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

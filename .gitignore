@@ -27,9 +27,12 @@
 .flutter-plugins-dependencies
 .packages
 .pub-cache/
+celering_user_app/pubspec.lock
 .pub/
 build/
-./plugins
+
+# packages related
+celering_user_app/plugins/
 
 # Web related
 lib/generated_plugin_registrant.dart

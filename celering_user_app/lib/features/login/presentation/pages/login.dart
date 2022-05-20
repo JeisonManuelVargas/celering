@@ -62,7 +62,32 @@ class Login extends BaseScreen<LoginState, LoginCubit> {
               InkWell(
                 onTap: () => AppNavigator.push(Routes.REGISTER),
                 child: const Text("Registrarse"),
-              )
+              ),
+              SizedBox(
+                height: ScreenSize.height(context) * 0.1,
+              ),
+              GestureDetector(
+                  onTap: () => AppNavigator.push(Routes.PAYMENT),
+                  child: Container(
+                    width: ScreenSize.width(context) * 0.5,
+                    height: ScreenSize.height(context) * 0.05,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.grey[300]!,
+                              blurRadius: 5,
+                              offset: const Offset(0, 3))
+                        ],
+                        color: Colors.yellow[300],
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Text(
+                      "Go to payment",
+                      style: TextStyle(
+                          fontSize: ScreenSize.width(context) * 0.04,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ))
             ],
           ),
         ),

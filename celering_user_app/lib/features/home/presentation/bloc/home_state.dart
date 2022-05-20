@@ -42,7 +42,7 @@ class HomeState {
       myLocations: myLocations ?? this.myLocations,
       mapPolyLines: mapPolyLines ?? this.mapPolyLines,
       arrivalPoint: arrivalPoint ?? this.arrivalPoint,
-      placeSelected: placeSelected??this.placeSelected,
+      placeSelected: placeSelected ?? this.placeSelected,
     );
   }
 }

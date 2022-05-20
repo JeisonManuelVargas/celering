@@ -2,6 +2,7 @@
 import 'dart:io';
 
 import 'package:celering_user_app/features/confirm_email/presentation/pages/confirm_email.dart';
+import 'package:celering_user_app/features/payment/presentation/pages/payment_screen.dart';
 import 'package:celering_user_app/features/register/presentation/pages/register.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:celering_user_app/core/animations/fade_page_route.dart';
@@ -14,6 +15,7 @@ enum Routes {
   LOGIN,
   REGISTER,
   CONFIRMATION_EMAIL,
+  PAYMENT,
 }
 
 class _Page {
@@ -22,6 +24,7 @@ class _Page {
   static const String login = "/login";
   static const String register = "/register";
   static const String confirmation_email = "/confirmationEmail";
+  static const String payment = "/payment";
 
   static const Map<Routes, String> _pageMap = {
     Routes.INIT: init,
@@ -29,6 +32,7 @@ class _Page {
     Routes.LOGIN: login,
     Routes.REGISTER: register,
     Routes.CONFIRMATION_EMAIL: confirmation_email,
+    Routes.PAYMENT: payment,
   };
 
   static String? page(Routes routes) => _pageMap[routes];
@@ -58,6 +62,8 @@ class AppNavigator {
         return _pageRoute(Register());
       case _Page.confirmation_email:
         return _pageRoute(ConfirmEmail(email: email));
+      case _Page.payment:
+        return _pageRoute(const PaymentScreen());
       default:
         return _pageRoute(Home());
     }
@@ -69,7 +75,8 @@ class AppNavigator {
         : FadeRoute(page: page);
   }
 
-  static Future push<T>(Routes route, [arguments]) => state.pushNamed(_Page.page(route)!, arguments: arguments);
+  static Future push<T>(Routes route, [arguments]) =>
+      state.pushNamed(_Page.page(route)!, arguments: arguments);
 
   static Future pushNamedAndRemoveUntil<T>(Routes route, {arguments}) =>
       state.pushNamedAndRemoveUntil(_Page.page(route)!, (Route routes) => false,
